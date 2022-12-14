@@ -34,7 +34,7 @@ And comparing Elastdocker and the popular [deviantony/docker-elk](https://github
 
 1. Clone the Repository
      ```bash
-     git clone https://github.com/sherifabdlnaby/elastdocker.git
+     git clone https://github.com/lizozom/docker-elastic-observability-with-otel.git
      ```
 2. Initialize Elasticsearch Keystore and TLS Self-Signed Certificates
     ```bash
@@ -53,9 +53,6 @@ And comparing Elastdocker and the popular [deviantony/docker-elk](https://github
     > - Modify `.env` file for your needs, most importantly `ELASTIC_PASSWORD` that setup your superuser `elastic`'s password, `ELASTICSEARCH_HEAP` & `LOGSTASH_HEAP` for Elasticsearch & Logstash Heap Size.
     
 > Whatever your Host (e.g AWS EC2, Azure, DigitalOcean, or on-premise server), once you expose your host to the network, ELK component will be accessible on their respective ports. Since the enabled TLS uses a self-signed certificate, it is recommended to SSL-Terminate public traffic using your signed certificates. 
-
-> 🏃🏻‍♂️ To start ingesting logs, you can start by running `make collect-docker-logs` which will collect your host's container logs.
-
 
 # Configuration
 
