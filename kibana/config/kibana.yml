@@ -29,9 +29,6 @@ xpack.fleet.agentPolicies:
   - name: Agent policy 1
     id: agent-policy-1
     namespace: default
-    monitoring_enabled:
-      - logs
-      - metrics
     package_policies:
       - name: apm-1
         id: default-apm

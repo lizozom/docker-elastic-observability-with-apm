@@ -2,3 +2,4 @@
 .DS_Store
 /secrets
 tools/elastalert/rules/*
+settings.json
