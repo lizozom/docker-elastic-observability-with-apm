@@ -1,0 +1,79 @@
+name-template: 'v$RESOLVED_VERSION 🚀'
+tag-template: 'v$RESOLVED_VERSION'
+version-template: '$MAJOR.$MINOR.$PATCH'
+version-resolver:
+  major:
+    labels:
+      - 'major'
+  minor:
+    labels:
+      - 'minor'
+      - 'enhancement'
+      - 'feature'
+      - 'dependency-update'
+  patch:
+    labels:
+      - 'auto-update'
+      - 'patch'
+      - 'fix'
+      - 'chore'
+      - 'bugfix'
+      - 'bug'
+      - 'hotfix'
+  default: 'patch'
+
+categories:
+  - title: '🚀 Enhancements'
+    labels:
+      - 'enhancement'
+      - 'feature'
+      - 'patch'
+  - title: '⬆️ Upgrades'
+    labels:
+      - 'upgrades'
+  - title: '🐛 Bug Fixes'
+    labels:
+      - 'fix'
+      - 'bugfix'
+      - 'bug'
+      - 'hotfix'
+  - title: '🤖 Automatic Updates'
+    labels:
+      - 'auto-update'
+  - title: '📝 Documentation'
+    labels:
+      - 'docs'
+
+autolabeler:
+  - label: 'docs'
+    files:
+      - '*.md'
+  - label: 'enhancement'
+    title: '/enhancement|fixes/i'
+
+  - label: 'upgrades'
+    title: '/⬆️/i'
+
+  - label: 'bugfix'
+    title: '/bugfix/i'
+
+  - label: 'bug'
+    title: '/🐛|🐞|bug/i'
+
+  - label: 'auto-update'
+    title: '/🤖/i'
+
+  - label: 'feature'
+    title: '/🚀|🎉/i'
+
+change-template: |
+  <details>
+    <summary>$TITLE @$AUTHOR (#$NUMBER)</summary>
+
+    $BODY
+  </details>
+
+template: |
+  ## Changes
+
+  $CHANGES
