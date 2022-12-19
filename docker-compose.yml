@@ -4,7 +4,7 @@ version: '3.5'
 networks:
   default:
     name: elastic
-    external: false
+    external: true
 
 # will contain all elasticsearch data.
 volumes:
@@ -45,6 +45,7 @@ services:
       ELASTIC_NODE_NAME: ${ELASTIC_NODE_NAME}
       ES_JAVA_OPTS: "-Xmx${ELASTICSEARCH_HEAP} -Xms${ELASTICSEARCH_HEAP} -Des.enforce.bootstrap.checks=true"
       bootstrap.memory_lock: "true"
+      ingest.geoip.downloader.enabled: false
     volumes:
       - elasticsearch-data:/usr/share/elasticsearch/data
       - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
@@ -121,6 +122,9 @@ services:
         target: /certs/apm-server.crt
       - source: apm-server.key
         target: /certs/apm-server.key
+    depends_on: 
+      - elasticsearch
+      - kibana
 
   webapp:
     build:
@@ -128,7 +132,8 @@ services:
     ports:
       - 3000:3000
     environment:
-      OTEL_EXPORTER_OTLP_ENDPOINT: https://${OTEL_HOST}:${OTEL_PORT}
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://${OTEL_HOST}:${OTEL_PORT}
+      OTEL_EXPORTER_OTLP_METRICS_ENDPOINT: http://${OTEL_HOST}:${OTEL_PORT}
       OTEL_EXPORTER_OTLP_HEADERS: "Authorization=Bearer ${ELASTIC_APM_SECRET_TOKEN}"
       OTEL_RESOURCE_ATTRIBUTES: service.name=webapp,service.version=${WEBAPP_VERSION},deployment.environment=production
       OTEL_METRICS_EXPORTER: otlp
