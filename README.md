@@ -44,6 +44,8 @@ Based on [elastdocker](https://github.com/sherifabdlnaby/elastdocker)
     $ make elk           <OR>         $ docker-compose up -d		<OR>		$ docker compose up -d
     ```
 4. Navigate to the web application at [http://localhost:3000/](http://localhost:3000) to generate APM traces.
+    ![image](https://user-images.githubusercontent.com/3016806/209701428-19a257ca-1b30-4f53-bb80-efd6434259d7.png)
+
 
 5. Visit Kibana at [https://localhost:5601/app/apm](https://localhost:5601/app/apm) to see the APM traces from our `webapp`
 
