@@ -48,6 +48,8 @@ Based on [elastdocker](https://github.com/sherifabdlnaby/elastdocker)
 5. Visit Kibana at [https://localhost:5601/app/apm](https://localhost:5601/app/apm) to see the APM traces from our `webapp`
 
     Default Username: `elastic`, Password: `changeme`
+    
+    ![image](https://user-images.githubusercontent.com/3016806/209701277-29e6ce0e-c068-4679-9a7a-ada6982d648e.png)
 
 # Configuration
 
