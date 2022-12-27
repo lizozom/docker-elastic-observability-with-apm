@@ -2,7 +2,7 @@
 <h4 align="center">APM Node.js and APM RUM agents on <b>Docker</b></h4>
 
 # Introduction
-Elastic Stack (**ELK**) Docker Composition, with a Node.JS application reporting APM metrics and traces to APM Server.
+Elastic Stack (**ELK**) Docker Composition, with a Node.JS application reporting APM client + server side metrics and traces to APM Server.
 
 Suitable for Demoing and MVPs.
 
