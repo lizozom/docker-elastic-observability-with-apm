@@ -1,8 +1,7 @@
-<h2 align="center">Applcication Observability with Elasticsearch and OTel on <b>Docker</b></h2>
-<h4 align="center">Configured to be repoty OTel into Elasticsearch via APM.</h4>
+<h2 align="center">Observability with Elasticsearch and APM Node.js and APM RUM agents on <b>Docker</b></h2>
 
 # Introduction
-Elastic Stack (**ELK**) Docker Composition, with a Node.JS application reporting OTel metrics and traces via APM Server.
+Elastic Stack (**ELK**) Docker Composition, with a Node.JS application reporting APM metrics and traces to APM Server.
 
 Suitable for Demoing and MVPs.
 
@@ -13,14 +12,12 @@ Based on [elastdocker](https://github.com/sherifabdlnaby/elastdocker)
 
 ### Main Features 📜
 
-- Node.JS application with OTel JavaScript SDK.
+- Node.JS application with Node APM Agent.
 - Elasticsearch, configured as a Production Single Node Cluster.
-- Security Enabled.
+- Security Enabled on Elasticsearch and Kibana.
+- APM Server receives *Non secure* connections.
 - Use Docker-Compose and `.env` to configure your entire stack parameters.
 - Persist Elasticsearch's Keystore and SSL Certifications.
-
-#### More points
-And comparing Elastdocker and the popular [deviantony/docker-elk](https://github.com/deviantony/docker-elk)
 
 -----
 
@@ -34,7 +31,7 @@ And comparing Elastdocker and the popular [deviantony/docker-elk](https://github
 
 1. Clone the Repository
      ```bash
-     git clone https://github.com/lizozom/docker-elastic-observability-with-otel.git
+     git clone https://github.com/lizozom/docker-elastic-observability-with-apm.git
      ```
 2. Initialize Elasticsearch Keystore and TLS Self-Signed Certificates
     ```bash
@@ -45,14 +42,14 @@ And comparing Elastdocker and the popular [deviantony/docker-elk](https://github
     ```bash
     $ make elk           <OR>         $ docker-compose up -d		<OR>		$ docker compose up -d
     ```
-4. Visit Kibana at [https://localhost:5601](https://localhost:5601) or `https://<your_public_ip>:5601`
+4. Visit Kibana at [http://localhost:3000/](http://localhost:3000/) or `https://<your_public_ip>:3000`
 
     Default Username: `elastic`, Password: `changeme`
 
     > - Notice that Kibana is configured to use HTTPS, so you'll need to write `https://` before `localhost:5601` in the browser.
     > - Modify `.env` file for your needs, most importantly `ELASTIC_PASSWORD` that setup your superuser `elastic`'s password, `ELASTICSEARCH_HEAP` & `LOGSTASH_HEAP` for Elasticsearch & Logstash Heap Size.
-    
-> Whatever your Host (e.g AWS EC2, Azure, DigitalOcean, or on-premise server), once you expose your host to the network, ELK component will be accessible on their respective ports. Since the enabled TLS uses a self-signed certificate, it is recommended to SSL-Terminate public traffic using your signed certificates. 
+
+5. Navigate to the web application at [http://]()
 
 # Configuration
 
@@ -75,10 +72,7 @@ make keystore
 
 ### Notes
 
-
 - ⚠️ Elasticsearch HTTP layer is using SSL, thus mean you need to configure your elasticsearch clients with the `CA` in `secrets/certs/ca/ca.crt`, or configure client to ignore SSL Certificate Verification (e.g `--insecure` in `curl`).
-
-- Adding Two Extra Nodes to the cluster will make the cluster depending on them and won't start without them again.
 
 - Makefile is a wrapper around `Docker-Compose` commands, use `make help` to know every command.
 
@@ -88,7 +82,7 @@ make keystore
 
 - Make sure to run `make setup` if you changed `ELASTIC_PASSWORD` and to restart the stack afterwards.
 
-- For Linux Users it's recommended to set the following configuration (run as `root`)
+- **Important**: For Linux Users it's recommended to set the following configuration (run as `root`)
     ```
     sysctl -w vm.max_map_count=262144
     ```
