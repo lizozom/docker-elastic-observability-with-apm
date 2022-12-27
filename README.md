@@ -1,4 +1,5 @@
-<h2 align="center">Observability with Elasticsearch and APM Node.js and APM RUM agents on <b>Docker</b></h2>
+<h2 align="center">Observability with Elasticsearch</h2>
+<h3 align="center">APM Node.js and APM RUM agents on <b>Docker</b></h2>
 
 # Introduction
 Elastic Stack (**ELK**) Docker Composition, with a Node.JS application reporting APM metrics and traces to APM Server.
