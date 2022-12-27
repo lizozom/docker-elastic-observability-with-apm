@@ -6,6 +6,8 @@ apm-server:
   # Defines the host and port the server is listening on. Use "unix:/path/to.sock" to listen on a unix domain socket.
   host: "0.0.0.0:8200"
   logging.level: info
+  rum:
+    enabled: true
   
   #---------------------------- APM Server - Secure Communication with Agents ----------------------------
 
