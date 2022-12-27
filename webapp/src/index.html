@@ -1,20 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Sample Site</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Elsatic Observability Demo</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <style>
-    body { padding-top: 50px; }
+    body {
+      padding-top: 50px;
+    }
   </style>
+
+  <!-- Fetch APM RUM from a cdn for simplicity sake. Can also be built using Webpack -->
+  <script src="https://cdn.jsdelivr.net/npm/@elastic/apm-rum@5.12.0/dist/bundles/elastic-apm-rum.umd.min.js" crossorigin></script>
+
+  <script>
+    // Initialize APM RUM
+    try {
+      const envVars = JSON.parse(`${ENV_VARS}`);
+      if (envVars.ELASTIC_APM_SERVER_URL) {
+        elasticApm.init({
+          serviceName: 'webapp-fe',
+          serverUrl: envVars.ELASTIC_APM_SERVER_URL,
+        });
+      } else {
+        console.warn("APM RUM is not configured")
+      }
+    } catch (e) {
+      console.error("Failed to load environment vars");
+    }
+  </script>
+
+  <script>
+    function fetchSampleApi() {
+      fetch("/sampleapi").then(
+        () => console.log("Fetched response")
+      ).catch(() => {
+        () => console.error("Error")
+      });
+    }
+  </script>
+
 </head>
+
 <body>
 
   <div class="container">
     <div class="jumbotron">
-      <h1>res.sendFile() Works!</h1>
+      <h1>Welcome to the Elasticsearch Observability Demo</h1>
+      <p>This demo uses APM Node and APM RUM agents to report observability straight to Elasticsearch.</p>
+      <p>Navigate to the <href a="https://localhost:5601/app/apm/">Kibana APM solution</href> to see usage stats.</p>
+      <p>Checkout the <a href="https://github.com/lizozom/docker-elastic-observability-with-apm">README</a> for more
+        details.</p>
+      <button onclick="fetchSampleApi()">Fetch Sample API</button>
     </div>
   </div>
-    
+
 </body>
+
 </html>

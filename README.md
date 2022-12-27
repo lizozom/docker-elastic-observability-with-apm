@@ -42,14 +42,11 @@ Based on [elastdocker](https://github.com/sherifabdlnaby/elastdocker)
     ```bash
     $ make elk           <OR>         $ docker-compose up -d		<OR>		$ docker compose up -d
     ```
-4. Visit Kibana at [http://localhost:3000/](http://localhost:3000/) or `https://<your_public_ip>:3000`
+4. Navigate to the web application at [http://localhost:3000/](http://localhost:3000) to generate APM traces.
+
+5. Visit Kibana at [https://localhost:5601/app/apm](https://localhost:5601/app/apm) to see the APM traces from our `webapp`
 
     Default Username: `elastic`, Password: `changeme`
-
-    > - Notice that Kibana is configured to use HTTPS, so you'll need to write `https://` before `localhost:5601` in the browser.
-    > - Modify `.env` file for your needs, most importantly `ELASTIC_PASSWORD` that setup your superuser `elastic`'s password, `ELASTICSEARCH_HEAP` & `LOGSTASH_HEAP` for Elasticsearch & Logstash Heap Size.
-
-5. Navigate to the web application at [http://]()
 
 # Configuration
 
